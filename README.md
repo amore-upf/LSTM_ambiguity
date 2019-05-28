@@ -15,7 +15,7 @@ This repository contains the code relevant to the paper " _Putting words in cont
 }
 ```
 ### Contents of this repository
-* Code for deriving probe tasks data, based on Lexical Substitution data: tasks word, sub and word+sub (`src/get_probe_tasks_data.py`). 
+* Code for deriving probe tasks data, based on Lexical Substitution data: tasks WORD, SUB, WORD+SUB (`src/get_probe_tasks_data.py`). 
 
 * Bidirectional language model used in the experiments reported in the paper (`language_model/model.pt`)
 Model trained in PyTorch using code in https://github.com/xsway/language-models 
@@ -29,20 +29,18 @@ Model trained in PyTorch using code in https://github.com/xsway/language-models
 
 #### Data
 
-To reconstruct the train/valid/test data used for the experiments: 
+To construct train/valid/test data: 
 
 * Download the CoInCo Lexical Subsitution data from https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/coinco.html (`coinco.xml`)
 
 * Then: 
 
 ```
-python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE
+python src/get_probe_tasks_data.py [-h] [--xml_file XML_FILE] [--new_split]
 ```
 
-If you instead want to create a new random partition of the data:
-```
-python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE --new_split
-```
+* `--xml_file`: path to xml file with Lexical Substitution data (`coinco.xml`)
+* `--new_split`: to create a new random partition of the data; by default, it uses the original random split
 
 ##### Output
 
@@ -52,10 +50,10 @@ python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE --new_split
 
  #### Probe tasks
  
-To train and test the diagnostic models:
+To train or test the diagnostic models:
 
 ```
-python src/run_probe_tasks.py [--phase PHASE] [--task TASK]  [--cuda] [--n_epochs N_EPOCHS] [--n_datapoints N_DATAPOINTS] 
+python src/run_probe_tasks.py [-h] [--phase PHASE] [--task TASK]  [--cuda] [--n_epochs N_EPOCHS] [--n_datapoints N_DATAPOINTS] 
 ```
 * `--phase`: `train` or `test`; by default, `train`
 * `--task`: among `word`, `sub`, `word+sub`; default: `sub`

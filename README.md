@@ -1,6 +1,6 @@
 # Putting words in context: LSTM language models and lexical ambiguity
 
-This repository contains the code relevant to the paper " _Putting words in context_: LSTM language models and lexical ambiguity " (to appear in Proc. ACL 2019 - Short paper). 
+This repository contains the code and language model used for the experiments reported in " _Putting words in context_: LSTM language models and lexical ambiguity " (to appear in Proc. ACL 2019 - Short paper). 
 
 ##### Citation
 
@@ -14,6 +14,7 @@ This repository contains the code relevant to the paper " _Putting words in cont
     publisher = {Association for Computational Linguistics},
 }
 ```
+
 ### Contents of this repository
 * Code for deriving probe tasks data, based on Lexical Substitution data: tasks WORD, SUB, WORD+SUB (`src/get_probe_tasks_data.py`). 
 
@@ -31,7 +32,8 @@ Model trained in PyTorch using code in https://github.com/xsway/language-models
 
 To construct train/valid/test data: 
 
-* Download the CoInCo Lexical Subsitution data from https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/coinco.html (`coinco.xml`)
+* Download the CoInCo Lexical Subsitution data from:
+https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/coinco.html (File: `coinco.xml`)
 
 * Then: 
 

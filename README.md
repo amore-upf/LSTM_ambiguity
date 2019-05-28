@@ -41,8 +41,9 @@ python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE
 
 If you instead want to create a new random partition of the data:
 ```
-python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE --original_split False
+python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE --new_split
 ```
+
 ##### Output
 
 * Csv file with all data `data/lexsub_data.csv.`
@@ -51,20 +52,19 @@ python src/get_probe_tasks_data.py --xml ADD_PATH_TO_XML_FILE --original_split F
 
  #### Probe tasks
  
-To train the diagnostic models:
+To train and test the diagnostic models:
 
 ```
-python src/run_probe_tasks.py --task ADD_TASK  [--cuda] [--epochs N] [--cut_point N] 
-
+python src/run_probe_tasks.py [--phase PHASE] [--task TASK]  [--cuda] [--n_epochs N_EPOCHS] [--n_datapoints N_DATAPOINTS] 
 ```
-* `--task`: among `word`, `sub`, `word+sub`
-Optional parameters:
-* `--cuda` : set to run on GPU 
-* `--epochs` (int): set number of epochs (by default, it uses early stopping based on validation loss)
-* `--cut_point` (int): cut the data up to n datapoints, for trial runs
+* `--phase`: `train` or `test`; by default, `train`
+* `--task`: among `word`, `sub`, `word+sub`; default: `sub`
+* `--cuda` : set to run on GPU ; default : `False`
+* `--n_epochs` (int): set number of epochs; default: `None` -->  It uses early stopping based on validation loss)
+* `--n_datapoints` (int): cut the data up to n datapoin for trial runs; default: `all`
 
-To choose and test the final diagnostic models:
-```
-python src/run_probe_tasks.py --task ADD_TASK --phase test 
+Different input types are considered: at training time, current and predictive hidden states at different layers (1-3) (e.g., `currenthidden1` == current hidden state layer 1); at test times, the unsupervised baselines are added (embedding of target word, and average embedding of 10 context words, including the target word itself). See paper for details.
 
-```
+During training phase, for each input type, diagnostic models with different hyperparameters combinations are trained (batch size, learning rate), and evaluated on validation data. For each model, train and validation loss at each epoch is saved into a log file: e.g., for SUB task and current hidden state at layer 1, batch size 16 and learning rate 0.0001: `probe_tasks_output/sub/currenthidden1/batch16_lr0.0001.log`. At the end of the hyperparameter search, only the model with the best validation loss is saved (e.g., `probe_tasks_output/sub/currenthidden1/batch16_lr0.0001.pt`). The final validation loss for each model and input type is saved into a csv file (e.g., for SUB task, `probe_tasks_output/sub/valid_scores_models.csv`).
+
+During testing phase, for each input type, the model with the smallest validation loss is loaded and evaluated on test data. The test scores for each model (one per input type) is saved into a csv file (e.g., for SUB task, `probe_tasks_output/sub/test_scores_models.csv`).  For each input type, the information yielded for each datapoint (cosine score and neighbors) is saved into a csv file (e.g., for SUB task and current hidden state at layer 1, `probe_tasks_output/sub/currenthidden1/labels_test.csv`). 

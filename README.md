@@ -1,4 +1,4 @@
-# _Putting words in context_: LSTM language models and lexical ambiguity
+# Putting words in context: LSTM language models and lexical ambiguity
 
 This repository contains the code relevant to the paper " _Putting words in context_: LSTM language models and lexical ambiguity " (to appear in Proc. ACL 2019 - Short paper). 
 

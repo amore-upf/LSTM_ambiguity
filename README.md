@@ -1,3 +1,5 @@
+![AMORE-UPF](logos/logo-amore-text-diagonal.png)    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;      ![UPF](logos/upf-logo.png)
+
 # Putting words in context: LSTM language models and lexical ambiguity
 
 This repository contains the code and language model used for the experiments reported in " Putting words in context: LSTM language models and lexical ambiguity " (to appear in Proc. ACL 2019 - Short paper). 

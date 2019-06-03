@@ -33,7 +33,7 @@ Model trained in PyTorch using code in https://github.com/xsway/language-models
 To construct train/valid/test data: 
 
 * Download the CoInCo Lexical Subsitution data from:
-https://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/coinco.html (File: `coinco.xml`)
+http://www.ims.uni-stuttgart.de/forschung/ressourcen/korpora/coinco/coinco.xml.gz (File: `coinco.xml`)
 
 * Then: 
 

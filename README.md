@@ -17,11 +17,18 @@ This repository contains the code and language model used for the experiments re
 }
 ```
 
-### Contents of this repository
+### Contents of the repository
+
 * Code for deriving probe tasks data, based on Lexical Substitution data: tasks WORD, SUB, WORD+SUB (`src/get_probe_tasks_data.py`). 
 
 * Bidirectional language model used in the experiments reported in the paper (`language_model/model.pt`)
-Model trained in PyTorch using code in https://github.com/xsway/language-models 
+
+Model trained in PyTorch using code in https://github.com/xsway/language-models . The model was trained using the following command:
+
+```
+train.py --save model.pt --cuda --data DATA_PATH --emsize 300 --hidden_sizes "600 600 300" --batch_size 32 --dropout 0.2 --tied no --optimizer adam --lr 0.0005  --epochs 20 --bptt 100 --mode bidir
+```
+
 
 * Code for extracting hidden representations out of the bidirectional language model (`src/rnn_models.py`, `src/probe_tasks_utils.py`) 
 

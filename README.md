@@ -30,7 +30,7 @@ train.py --save model.pt --cuda --data DATA_PATH --emsize 300 --hidden_sizes "60
 ```
 
 
-* Code for extracting hidden representations out of the bidirectional language model (`src/rnn_models.py`, `src/probe_tasks_utils.py`) 
+* Code for extracting hidden representations out of the bidirectional language model (`src/rnn_models.py` -- modified from https://github.com/xsway/language-models/blob/master/language_models/rnn_models.py ; `src/probe_tasks_utils.py`) 
 
 * Code for training and testing different types of input representations on the probe tasks: word, sub and word+sub 
 (`src/run_probe_tasks.py`)

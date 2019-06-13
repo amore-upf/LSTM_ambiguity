@@ -135,7 +135,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     tokenizer = TreebankWordTokenizer() # Used to tokenize context sequences
-    data_file = args.xml
+    data_file = args.xml_file
 
     if data_file == None:
         print('No xml file provided')
